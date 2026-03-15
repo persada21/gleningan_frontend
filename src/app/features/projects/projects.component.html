@@ -1,0 +1,104 @@
+<header class="page-header">
+    <div class="header-titles">
+        <h1>Projects Dashboard</h1>
+        <p class="subtitle">Explore active construction projects</p>
+    </div>
+</header>
+
+<!-- Filtering / Search Bar section -->
+<section class="controls-section">
+    <form class="filter-form" ng-submit="ctrl.applyFilters()">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" 
+                   ng-model="ctrl.filters.keyword" 
+                   placeholder="Search projects by name..." 
+                   class="filter-input search-input">
+        </div>
+        
+        <div class="filter-box">
+            <i class="fa-solid fa-building"></i>
+            <input type="text"
+                   ng-model="ctrl.filters.company_name"
+                   placeholder="Filter by company name..."
+                   class="filter-input area-select">
+        </div>
+
+        <div class="filter-box">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <select ng-model="ctrl.filters.area" class="filter-input area-select">
+                <option value="">All Areas</option>
+                <option value="North">North</option>
+                <option value="South">South</option>
+                <option value="East">East</option>
+                <option value="West">West</option>
+                <option value="Central">Central</option>
+                <option value="London">London</option>
+                <option value="Scotland">Scotland</option>
+                <option value="Wales">Wales</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-filter"></i> Apply Filters
+        </button>
+        <button type="button" class="btn btn-secondary" ng-click="ctrl.resetFilters()">
+            Clear
+        </button>
+    </form>
+</section>
+
+<!-- Loading State -->
+<div class="loading-state" ng-if="ctrl.loading">
+    <div class="spinner"></div>
+    <p>Loading projects...</p>
+</div>
+
+<!-- Empty State -->
+<div class="empty-state" ng-if="!ctrl.loading && ctrl.projects.length === 0">
+    <div class="empty-icon"><i class="fa-regular fa-folder-open"></i></div>
+    <h3>No projects found</h3>
+    <p>Try adjusting your search criteria or clearing active filters.</p>
+</div>
+
+<!-- Projects Grid -->
+<section class="projects-grid" ng-if="!ctrl.loading && ctrl.projects.length > 0">
+    <article class="project-card" ng-repeat="project in ctrl.projects">
+        <div class="card-header">
+            <h3 class="project-title">{{ project.project_name }}</h3>
+            <span class="area-badge" ng-if="project.area">{{ project.area }}</span>
+        </div>
+        
+        <div class="card-body">
+            <div class="info-row">
+                <i class="fa-solid fa-briefcase"></i>
+                <span class="info-label">Company:</span>
+                <span class="info-value">{{ project.company }}</span>
+            </div>
+            <div class="info-row">
+                <i class="fa-solid fa-calendar-alt"></i>
+                <span class="info-label">Start:</span>
+                <span class="info-value">{{ project.project_start | dateFormat }}</span>
+            </div>
+            <div class="info-row">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span class="info-label">End:</span>
+                <span class="info-value">{{ project.project_end | dateFormat }}</span>
+            </div>
+            <div class="info-row value-row">
+                <i class="fa-solid fa-sterling-sign"></i>
+                <span class="info-label">Value:</span>
+                <span class="info-value amount">£{{ project.project_value | number:0 }}</span>
+            </div>
+        </div>
+    </article>
+</section>
+
+<!-- Shared Pagination Component -->
+<app-pagination 
+    total="ctrl.total" 
+    current-page="ctrl.currentPage" 
+    per-page="ctrl.perPage"
+    on-page-change="ctrl.changePage(page)"
+    on-per-page-change="ctrl.onPerPageChange(perPage)">
+</app-pagination>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gleniganApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glenigan Projects Dashboard</title>
+    <!-- Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- AngularJS 1.8.x -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular-route.min.js"></script>
+    
+    <!-- App Scripts (Compiled from TS into dist/) -->
+    <script src="../dist/app/app.config.js"></script>
+    <script src="../dist/app/app.routes.js"></script>
+    <script src="../dist/app/app.component.js"></script>
+    
+    <!-- Core & Shared -->
+    <script src="../dist/app/core/error-handler.service.js"></script>
+    <script src="../dist/app/shared/pipes/date-format.pipe.js"></script>
+    <script src="../dist/app/shared/components/sidebar/sidebar.component.js"></script>
+    <script src="../dist/app/shared/components/pagination/pagination.component.js"></script>
+    
+    <!-- Features: Projects -->
+    <script src="../dist/app/features/projects/projects.service.js"></script>
+    <script src="../dist/app/features/projects/projects-list.component.js"></script>
+    <script src="../dist/app/features/projects/projects.routes.js"></script>
+    
+    <!-- Features: Companies -->
+    <script src="../dist/app/features/companies/companies.service.js"></script>
+    <script src="../dist/app/features/companies/companies-list.component.js"></script>
+    <script src="../dist/app/features/companies/companies.routes.js"></script>
+</head>
+<body>
+
+    <app-root></app-root>
+
+</body>
+</html>

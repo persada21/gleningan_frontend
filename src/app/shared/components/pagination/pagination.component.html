@@ -1,0 +1,26 @@
+<footer class="pagination-container" ng-if="$ctrl.total > 0">
+    <div class="pagination-info">
+        Showing {{ ($ctrl.currentPage - 1) * $ctrl.perPage + 1 }} to 
+        <span>{{ ($ctrl.currentPage * $ctrl.perPage > $ctrl.total) ? $ctrl.total : ($ctrl.currentPage * $ctrl.perPage) }}</span>
+        of {{ $ctrl.total | number }} results
+    </div>
+    
+    <div class="pagination-buttons">
+        <button class="btn btn-icon" ng-disabled="$ctrl.currentPage === 1" ng-click="$ctrl.onPageChange({ page: $ctrl.currentPage - 1 })">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <span class="page-current">{{ $ctrl.currentPage }} / {{ $ctrl.totalPages }}</span>
+        <button class="btn btn-icon" ng-disabled="$ctrl.currentPage >= $ctrl.totalPages" ng-click="$ctrl.onPageChange({ page: $ctrl.currentPage + 1 })">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+    
+    <div class="per-page-selector">
+        <!-- Fix: Use ng-options for numeric value mapping and to avoid empty selector bug -->
+        <select ng-model="$ctrl.perPage" 
+                ng-change="$ctrl.triggerPerPageChange()" 
+                ng-options="option.value as option.label for option in $ctrl.perPageOptions"
+                class="filter-input input-sm">
+        </select>
+    </div>
+</footer>
