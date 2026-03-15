@@ -95,20 +95,7 @@ sequenceDiagram
     Note over C: AngularJS Data-Binding reflects changes in HTML
 ```
 
-### 3. Shared Component Interaction (DRY)
-Example of interaction with the shared Pagination component.
 
-```mermaid
-sequenceDiagram
-    participant LC as Feature List Component
-    participant P as app-pagination (Shared)
-
-    Note over LC: Rendered with per-page="ctrl.perPage"
-    LC->>P: One-way Binding (<)
-    Note over P: User changes dropdown to "20"
-    P->>LC: Expression Binding (&)
-    LC->>LC: perPage = 20; loadData()
-```
 
 ---
 
